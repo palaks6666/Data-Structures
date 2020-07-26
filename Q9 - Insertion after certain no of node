@@ -1,0 +1,118 @@
+class Main 
+{   
+    public Node head = null; 
+    class Node{    
+        int data;    
+        Node next;
+        public Node(int data) {    
+            this.data = data;    
+            this.next = null;    
+        }    
+    }    
+    public void insertAfter(int certainNode, int data){ 
+        Node current = head;
+        if(head == null) {
+            System.out.println("Error:List is empty");    
+            return;    
+        }      
+        int i=1;
+        while(current != null && i<=certainNode) {   
+//            System.out.println(i+" ,Certain node ="+current.data);
+            if(i<certainNode)
+                current = current.next;
+            i++;
+        }   
+        i--;
+        if(i<certainNode){
+            System.out.println("Error:Certain node is not available please add data first");    
+            return;   
+        }
+        if (current == null) 
+        { 
+            System.out.println("Error:Certain node is null"); 
+            return; 
+        }  
+        Node nNode = new Node(data); 
+        nNode.next = current.next; 
+        current.next = nNode; 
+    } 
+    public void display() {   
+        Node current = head;
+        if(head == null) {    
+            System.out.println("List is empty");    
+            return;    
+        }    
+        System.out.println("Nodes of singly linked list: ");    
+        while(current != null) {    
+            System.out.print(current.data + " ");    
+            current = current.next;    
+        }    
+        System.out.println();    
+	}    
+    public void insertBeg(int data){
+        Node temp = new Node(data);
+        if(head == null) {    
+           head = temp; 
+        }else{
+          temp.next=head;
+          head = temp; 
+        }
+    }
+	    
+    public void deletionBeg(){
+      if(head==null)
+      {
+        System.out.println("LIST IS EMPTY");
+      }
+      else
+      {
+        Node temp=head;
+        head=head.next;
+        temp=null;
+      }
+    }
+    public void deletionEnd()
+    {
+      if(head==null)
+      {
+        System.out.println("LIST IS EMPTY");
+      }
+      else
+      {
+        Node secondlast=head;
+        while(secondlast.next.next!=null)
+        {
+          secondlast=secondlast.next;
+        }
+        Node last=secondlast.next;
+        secondlast.next=null;
+        last=null;
+      }
+    }
+    public void insertEnd(int data)
+    {
+        Node temp = new Node(data);
+        if(head == null) {    
+           head = temp; 
+        }else{
+          Node last = head;
+          while (last.next != null) { 
+                last = last.next; 
+            } 
+            last.next = temp; 
+        }
+    }
+	    
+	public static void main(String[] args) {
+		Main ob= new Main();
+		ob.insertBeg(2);
+		ob.insertBeg(23);
+		ob.insertBeg(20);
+		ob.insertBeg(40);
+		ob.insertEnd(45);
+		ob.insertEnd(50);
+		ob.display();	
+		ob.insertAfter(3,25);
+		ob.display();	
+	}
+}
