@@ -1,0 +1,62 @@
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int size = Integer.parseInt(in.nextLine());
+        for (int i = 0; i < size; i++) {
+            char[] s = in.nextLine().toCharArray();
+            Stack<Character> stack = new Stack<Character>();
+            int error = 0;
+            String Result = "YES";
+            for (int j = 0; j < s.length; j++) {
+                if (stack.size() > s.length - j) {
+                    error = 1;
+                    break;
+                }
+                switch (s[j]) {
+                case '{':
+                case '[':
+                case '(':
+                    stack.push(s[j]);
+                    break;
+
+                case '}':
+                    if (!stack.empty() && stack.peek() == '{') {
+                        stack.pop();
+                    } else {
+                        error = 1;
+                    }
+                    break;
+
+                case ']':
+                    if (!stack.empty() && stack.peek() == '[') {
+                        stack.pop();
+                    } else {
+                        error = 1;
+                    }
+                    break;
+
+                case ')':
+                    if (!stack.empty() && stack.peek() == '(') {
+                        stack.pop();
+                    } else {
+                        error = 1;
+                    }
+                    break;
+                }
+                if (error == 1) {
+                    Result = "NO";
+                    break;
+                }
+            }
+            if (stack.size() > 0) {
+                Result = "NO";
+            }
+            System.out.println(Result);
+            Result = "YES";
+        }
+        in.close();
+    }
+}
