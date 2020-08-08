@@ -1,0 +1,53 @@
+import java.util.Scanner;
+ class Node {
+
+	
+    int data;
+    Node next;
+    
+    Node(int data)
+    {
+ 	   this.data=data;
+ 	   next=null;
+    }
+	
+
+}
+public class LinkedList_FindAvg {
+	public static void main(String[] args) {
+		
+    Node head = null,tail=null;
+		Scanner s = new Scanner(System.in);
+		int data = s.nextInt();
+		while(data!=-1)
+		{
+			Node newNode = new Node(data);
+			
+			if(head==null)
+			{
+				head= newNode;
+				tail = newNode;
+			}
+			else
+			{	
+				tail.next= newNode; 
+				tail= newNode;
+			} 
+			
+			data = s.nextInt();
+		}
+		
+		int sum=0,count=0;
+		
+		while(head!=null)
+		{
+			sum=sum+head.data;
+			head=head.next;
+			count++;
+		}
+		
+		int avg=(int)sum/count;
+		System.out.println(avg);
+	}
+
+}
