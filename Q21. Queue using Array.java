@@ -56,10 +56,11 @@ public class Main {
         q.enq(12);
         q.printQueue();
         q.enq(21);
+        System.out.println("\nAfter Adding");
         q.printQueue();
         q.deq();
         q.deq();
-        System.out.printf("\n\nafter deletion\n");
+        System.out.println("\nAfter deletion");
         q.printQueue();
 
     }
